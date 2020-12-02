@@ -5,6 +5,7 @@ import {
 	Text,
 	TextInput,
 	TouchableOpacity,
+	Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from '@expo/vector-icons';
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
 	userNameInputStyle: {
 		fontSize: 20,
 		marginTop: 20,
-		width: 250,
+		width: Dimensions.get('window').width/ 1.5,
 		alignItems: 'center',
 		height: 40,
 		borderBottomWidth: 1,
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		textAlignVertical: 'center',
 		height: 40,
-		width: 250,
+		width: Dimensions.get('window').width/ 1.5,
 		color: 'white',
 	},
 	filterText: {

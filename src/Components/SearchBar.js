@@ -5,6 +5,7 @@ import {
 	StyleSheet,
 	Text,
 	TouchableOpacity,
+	Dimensions,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
@@ -42,6 +43,7 @@ const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
 
 const styles = StyleSheet.create({
 	containerStyle: {
+		alignItems: 'center',
 		flexDirection: 'row',
 		backgroundColor: 'transparent',
 	},
@@ -53,8 +55,8 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		textAlign: 'center',
 		textAlignVertical: 'center',
-		height: 30,
-		width: 70,
+		height: Dimensions.get('window').height / 25,
+		width:  Dimensions.get('window').width / 5.5,
 		color: 'white',
 	},
 	filterText: {
@@ -91,8 +93,8 @@ const styles = StyleSheet.create({
 		marginHorizontal: 10,
 		backgroundColor: '#EE6F57',
 		borderRadius: 30,
-		height: 30,
-		width: 30,
+		height: Dimensions.get('window').height / 25,
+		width: Dimensions.get('window').height / 25,
 		color: 'white',
 	},
 });
