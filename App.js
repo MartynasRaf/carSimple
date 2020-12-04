@@ -12,6 +12,7 @@ import UploadScreen from './src/Screens/UploadScreen';
 import { color } from 'react-native-reanimated';
 import { FontAwesome } from '@expo/vector-icons';
 import SignInScreen from './src/Screens/SignInScreen';
+import SignUpScreen from './src/Screens/SignUpScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -32,6 +33,7 @@ function ProfileNav() {
 		<Stack.Navigator headerMode='none'>
 			<Stack.Screen name='Profile' component={ProfileScreen} />
 			<Stack.Screen name='SignIn' component={SignInScreen} />
+			<Stack.Screen name='SignUp' component={SignUpScreen} />
 		</Stack.Navigator>
 	);
 }

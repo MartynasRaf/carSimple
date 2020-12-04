@@ -11,9 +11,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from '@expo/vector-icons';
 import AdjustLabel from '../Components/AdjustLabel';
 
-const SignInScreen =  ({ navigation }) => {
+const SignUpScreen = () => {
 	const [userName, setUserName] = useState('');
-	const [pass, setPass] = useState('');
+    const [pass, setPass] = useState('');
+    const [email, setEmail] = useState('');
 
 	return (
 		<SafeAreaView style={styles.mainScreenStyle}>
@@ -32,6 +33,18 @@ const SignInScreen =  ({ navigation }) => {
 						borderRadius: 100,
 						marginTop: 200,
 					}}
+				/>
+
+                <TextInput
+					autoCapitalize='none'
+					autoCorrect={false}
+					style={styles.userNameInputStyle}
+					placeholder='Enter E-mail'
+					value={email}
+					onChangeText={setEmail}
+					onEndEditing={() =>
+						console.log('finished editing e-mail')
+					}
 				/>
 
 				<TextInput
@@ -62,16 +75,10 @@ const SignInScreen =  ({ navigation }) => {
 				<TouchableOpacity style={styles.signButton}>
 					<AdjustLabel
 						fontSize={16}
-						text='Log In'
+						text='Sign Up'
 						style={styles.filterText}
 						numberOfLines={1}
 					/>
-				</TouchableOpacity>
-
-				<TouchableOpacity style={{ marginTop: 10 }} onPress={() => navigation.navigate('SignUp')}>
-					<Text style={{ color: 'blue' }}>
-						Don't have an account? Sign up here!
-					</Text>
 				</TouchableOpacity>
 			</View>
 		</SafeAreaView>
@@ -112,4 +119,4 @@ const styles = StyleSheet.create({
 		fontWeight: '900',
 	},
 });
-export default SignInScreen;
+export default SignUpScreen;
