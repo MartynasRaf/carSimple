@@ -15,10 +15,15 @@ const BrowseScreen = () => {
 	const [term, setTerm] = useState('');
 
 	return (
-		<SafeAreaView style={styles.mainScreenStyle}>
+		<SafeAreaView style={{
+			flex: 1,
+			styles: styles.mainScreenStyle
+			}}
+		>
 			<View
 				style={{
-					backgroundColor: '#DCEFF9',
+					flex: 1,
+					backgroundColor: '#DCEFF9'
 				}}
 			>
 				<View style={{ backgroundColor: 'transperant' }}>
