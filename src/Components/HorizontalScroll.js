@@ -35,9 +35,9 @@ const HorizontalScroll = (props) => {
 
 const styles = StyleSheet.create({
 	headers: {
-		alignSelf: 'flex-start',
-		marginLeft: 10,
-		fontSize: 35,
+		alignSelf: 'center',
+		marginLeft: 0,
+		fontSize: 20,
 	},
 });
 

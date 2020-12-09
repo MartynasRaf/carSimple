@@ -22,21 +22,21 @@ const ProfileScreen = ({ navigation }) => {
 				<TouchableOpacity style={styles.profileButton} onPress={() => navigation.navigate('SignIn')}>
 					<FontAwesome
 						name='user-circle'
-						size={120}
+						size={60}
 						color='#EE6e57'
 						style={{ backgroundColor: 'white', borderRadius: 100 }}
 					/>
-					<Text style={{ fontSize: 40 }}>Sign In</Text>
+					<Text style={{ fontSize: 26 }}>Sign In</Text>
 				</TouchableOpacity>
 
-				<HorizontalScroll
-					categoryText='Favourites'
+				<HorizontalScroll	
+					categoryText='Favorites'
 					style={styles.scrollStyle}
 				/>
 
 				<HorizontalScroll
-					categoryText='History'
-					style={[styles.scrollStyle, { marginTop: 10 }]}
+					categoryText='Uploaded'
+					style={[styles.scrollStyle, { marginTop: 0 }]}
 				/>
 			</View>
 		</SafeAreaView>
@@ -49,10 +49,11 @@ const styles = StyleSheet.create({
 	},
 	profileButton: { alignItems: 'center', marginTop: 20 },
 	headers: {
-		alignSelf: 'flex-start',
-		marginLeft: 10,
-		fontSize: 20,
+		// all these properties change nothing
+		//alignSelf: 'stretch',
+		//marginLeft: 10,
+		//fontSize: 10,
 	},
-	scrollStyle: { height: 250, marginTop: 40 },
+	scrollStyle: { height: 200, marginTop: 10 },
 });
 export default ProfileScreen;

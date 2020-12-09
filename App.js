@@ -47,7 +47,7 @@ export default function App() {
 						activeBackgroundColor: '#ee6f57',
 						inactiveBackgroundColor: '#ee6f57',
 						activeTintColor: 'white',
-						inactiveTintColor: 'grey',
+						inactiveTintColor: 'black',
 						showLabel: true,
 					}}
 					screenOptions={({ route }) => ({
@@ -55,13 +55,11 @@ export default function App() {
 							let iconName;
 
 							if (route.name === 'Browse') {
-								iconName = focused ? 'th-list' : 'th-list';
+								iconName = 'th-list';
 							} else if (route.name == 'Upload') {
-								iconName = focused ? 'cart-plus' : 'cart-plus';
+								iconName = 'cart-plus';
 							} else if (route.name == 'Profile') {
-								iconName = focused
-									? 'user-circle'
-									: 'user-circle';
+								iconName = 'user-circle';
 							}
 
 							// You can return any component that you like here!

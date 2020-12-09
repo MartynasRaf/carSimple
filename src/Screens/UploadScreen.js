@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import PickerModal from 'react-native-picker-modal-view';
 
 const UploadScreen = () => {
-	let selectedItem = { Name: ' Select Brand' };
+	let selectedItem = { Name: 'Select Brand' };
 
 	return (
 		<SafeAreaView style={styles.mainScreenStyle}>
@@ -27,27 +27,27 @@ const UploadScreen = () => {
 					items={[
 						{
 							Name: 'Audi',
-							Value: 'Åland Islands',
-							Code: 'AX',
-							Id: 1,
+							//Value: 'Åland Islands',
+							//Code: 'AX',
+							//Id: 1,
 						},
 						{
 							Name: 'BMW',
-							Value: 'Albania',
-							Code: 'AL',
-							Id: 2,
+							//Value: 'Albania',
+							//Code: 'AL',
+							//Id: 2,
 						},
 						{
 							Name: 'Volvo',
-							Value: 'Algeria',
-							Code: 'DZ',
-							Id: 3,
+							//Value: 'Algeria',
+							//Code: 'DZ',
+							//Id: 3,
 						},
 						{
 							Name: 'Lada',
-							Value: 'American Samoa',
-							Code: 'AS',
-							Id: 4,
+							//Value: 'American Samoa',
+							//Code: 'AS',
+							//Id: 4,
 						},
 					]}
 					sortingLanguage={'tr'}
