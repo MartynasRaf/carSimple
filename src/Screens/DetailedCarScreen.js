@@ -8,10 +8,18 @@ import {
 	TouchableOpacity,
 } from 'react-native';
 import AdjustLabel from '../Components/AdjustLabel';
+import { FontAwesome } from '@expo/vector-icons';
 
 const DetaileCarScreen = () => {
 	return (
 			<View>
+				<TouchableOpacity style={styles.favoriteButton}>
+					<FontAwesome
+						name='heart'
+						size={60}
+						color='#EE6e57'
+					/>
+				</TouchableOpacity>
 				<View style={styles.canvas}/>
 				<Image
 					source={require('../../assets/branson-f42c-akcija-f47cn.jpg')}
@@ -98,6 +106,12 @@ const styles = StyleSheet.create({
 		width: Dimensions.get('window').width - 20,
 		fontWeight: 'bold',
 	},
+	favoriteButton: {
+		position: 'absolute',
+		marginTop: 200,
+		marginLeft: Dimensions.get('window').width - 80,
+		zIndex: 5
+	}
 });
 
 export default DetaileCarScreen;
