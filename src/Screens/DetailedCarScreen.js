@@ -9,8 +9,9 @@ import {
 } from 'react-native';
 import AdjustLabel from '../Components/AdjustLabel';
 import { FontAwesome } from '@expo/vector-icons';
+import { StatusBar } from 'react-native';
 
-const DetaileCarScreen = () => {
+const DetaileCarScreen = ( {navigation} ) => {
 	return (
 			<View>
 				<TouchableOpacity style={styles.favoriteButton}>
@@ -21,12 +22,25 @@ const DetaileCarScreen = () => {
 					/>
 				</TouchableOpacity>
 				<View style={styles.canvas}/>
-				<Image
-					source={require('../../assets/branson-f42c-akcija-f47cn.jpg')}
-					resizeMode='cover'
-					style={styles.image}
-				/>
+					<TouchableOpacity style={styles.cancelButton} onPress={() => navigation.goBack()}>
+						<FontAwesome
+							name='times'
+							size={30}
+							color='black'
+						/>
+					</TouchableOpacity>
+					<Image
+						source={require('../../assets/branson-f42c-akcija-f47cn.jpg')}
+						resizeMode='cover'
+						style={styles.image}
+					/>
 				<View style={{zIndex: 3}}>
+					<AdjustLabel
+						fontSize={15}
+						text='1998'
+						style={styles.textSimple}
+						numberOfLines={1}
+					/>
 					<AdjustLabel
 						fontSize={25}
 						text='Mercedes-Benz'
@@ -37,13 +51,6 @@ const DetaileCarScreen = () => {
 					<AdjustLabel
 						fontSize={15}
 						text='1.0l SUV'
-						style={styles.textSimple}
-						numberOfLines={1}
-					/>
-
-					<AdjustLabel
-						fontSize={15}
-						text='Year: 2020'
 						style={styles.textSimple}
 						numberOfLines={1}
 					/>
@@ -72,7 +79,7 @@ const styles = StyleSheet.create({
 		marginTop: Dimensions.get('window').height / 3 - 25,
 		borderRadius: 30,
 		zIndex: 2,
-		width: Dimensions.get('window').width,
+		width: Dimensions.get('window').width,	
 		height: Dimensions.get('window').height,
 		backgroundColor: '#DCEFF9'
 	},
@@ -92,9 +99,8 @@ const styles = StyleSheet.create({
 	},
 	textSimple: {
 		color: 'black',
-		marginTop: 0,
 		marginHorizontal: 10,
-		height: 20,
+		//height: 20,
 		width: Dimensions.get('window').width / 2.5,
 		fontWeight: '500',
 	},
@@ -111,6 +117,13 @@ const styles = StyleSheet.create({
 		marginTop: 200,
 		marginLeft: Dimensions.get('window').width - 80,
 		zIndex: 5
+	},
+	cancelButton: {
+		position: 'absolute',
+		zIndex:4,
+		marginLeft: 20,
+		marginTop: 40,
+		opacity: 0.6
 	}
 });
 

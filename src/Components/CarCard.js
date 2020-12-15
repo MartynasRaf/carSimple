@@ -9,9 +9,10 @@ import {
 } from 'react-native';
 import AdjustLabel from '../Components/AdjustLabel';
 
-const CarCard = () => {
+const CarCard = ( {navigation} ) => {
+	
 	return (
-		<TouchableOpacity style={styles.container}>
+		<TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Detailed')} >
 			<Image
 				source={require('../../assets/branson-f42c-akcija-f47cn.jpg')}
 				resizeMode='cover'

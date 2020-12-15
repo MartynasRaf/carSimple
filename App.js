@@ -35,6 +35,14 @@ function ProfileNav() {
 			<Stack.Screen name='Profile' component={ProfileScreen} />
 			<Stack.Screen name='SignIn' component={SignInScreen} />
 			<Stack.Screen name='SignUp' component={SignUpScreen} />
+		</Stack.Navigator>
+	);
+}
+
+function BrowseNav() {
+	return (
+		<Stack.Navigator headerMode='none'>
+			<Stack.Screen name='Browse' component={BrowseScreen} />
 			<Stack.Screen name='Detailed' component={DetailedCarScreen} />
 		</Stack.Navigator>
 	);
@@ -77,7 +85,7 @@ export default function App() {
 				>
 					<Tab.Screen
 						name='Browse'
-						component={BrowseScreen}
+						component={BrowseNav}
 						options={{ title: 'Browse' }}
 					/>
 					<Tab.Screen
