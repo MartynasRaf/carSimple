@@ -35,6 +35,7 @@ function ProfileNav() {
 			<Stack.Screen name='Profile' component={ProfileScreen} />
 			<Stack.Screen name='SignIn' component={SignInScreen} />
 			<Stack.Screen name='SignUp' component={SignUpScreen} />
+			<Stack.Screen name='Detailed' component={DetailedCarScreen} />
 		</Stack.Navigator>
 	);
 }

@@ -32,11 +32,13 @@ const ProfileScreen = ({ navigation }) => {
 				<HorizontalScroll	
 					categoryText='Favorites'
 					style={styles.scrollStyle}
+					navigation = {navigation}
 				/>
 
 				<HorizontalScroll
 					categoryText='Uploaded'
 					style={[styles.scrollStyle, { marginTop: 0 }]}
+					navigation = {navigation}
 				/>
 			</View>
 		</SafeAreaView>

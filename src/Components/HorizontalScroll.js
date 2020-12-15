@@ -20,14 +20,14 @@ const HorizontalScroll = (props) => {
 				contentContainerStyle
 				style={{ backgroundColor: 'rgba(255,255,255,0.3)' }}
 			>
-				<CarCard />
-				<CarCard />
-				<CarCard />
-				<CarCard />
-				<CarCard />
-				<CarCard />
-				<CarCard />
-				<CarCard />
+				<CarCard navigation = {props.navigation}/>
+				<CarCard navigation = {props.navigation}/>
+				<CarCard navigation = {props.navigation}/>
+				<CarCard navigation = {props.navigation}/>
+				<CarCard navigation = {props.navigation}/>
+				<CarCard navigation = {props.navigation}/>
+				<CarCard navigation = {props.navigation}/>
+				<CarCard navigation = {props.navigation}/>
 			</ScrollView>
 		</View>
 	);
