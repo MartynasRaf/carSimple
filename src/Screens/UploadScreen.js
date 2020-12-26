@@ -4,7 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import PickerModal from 'react-native-picker-modal-view';
 
 const UploadScreen = () => {
-	let selectedItem = { Name: 'Select Brand' };
+	let selectedBrand = { Name: 'Select Brand' };
+	let selectedModel = { Name: 'Select Model' };
 
 	return (
 		<SafeAreaView style={styles.mainScreenStyle}>
@@ -14,14 +15,14 @@ const UploadScreen = () => {
 						<Button
 							disabled={disabled}
 							title={
-								typeof selectedItem.Name === 'string'
-									? selectedItem.Name
+								typeof selectedBrand.Name === 'string'
+									? selectedBrand.Name
 									: 'Select Brand'
 							}
 							onPress={showModal}
 						/>
 					)}
-					onSelected={(it) => (selectedItem = it)}
+					onSelected={(it) => (selectedBrand = it)}
 					onClosed={console.log('just testin')}
 					onBackButtonPressed={console.log('just testin')}
 					items={[
@@ -33,26 +34,61 @@ const UploadScreen = () => {
 						},
 						{
 							Name: 'BMW',
-							//Value: 'Albania',
-							//Code: 'AL',
-							//Id: 2,
 						},
 						{
 							Name: 'Volvo',
-							//Value: 'Algeria',
-							//Code: 'DZ',
-							//Id: 3,
 						},
 						{
 							Name: 'Lada',
-							//Value: 'American Samoa',
-							//Code: 'AS',
-							//Id: 4,
 						},
 					]}
 					sortingLanguage={'tr'}
 					showToTopButton={true}
-					selected={selectedItem}
+					selected={selectedBrand}
+					showAlphabeticalIndex={true}
+					autoGenerateAlphabeticalIndex={true}
+					selectPlaceholderText={'Choose one...'}
+					onEndReached={() => console.log('list ended...')}
+					searchPlaceholderText={'Search...'}
+					requireSelection={false}
+					autoSort={false}
+				/>
+
+				<PickerModal
+					renderSelectView={(disabled, selected, showModal) => (
+						<Button
+							disabled={disabled}
+							title={
+								typeof selectedModel.Name === 'string'
+									? selectedModel.Name
+									: 'Select Model'
+							}
+							onPress={showModal}
+						/>
+					)}
+					onSelected={(it) => (selectedModel = it)}
+					onClosed={console.log('just testin')}
+					onBackButtonPressed={console.log('just testin')}
+					items={[
+						{
+							Name: 'Model 1',
+							//Value: 'Åland Islands',
+							//Code: 'AX',
+							//Id: 1,
+						},
+						{
+							Name: 'Model 2',
+						},
+						{
+							Name: 'Model 3',
+						},
+						{
+							Name: 'Model 4',
+						},
+					]}
+					sortingLanguage={'tr'}
+					showToTopButton={true}
+					selected={selectedBrand}
 					showAlphabeticalIndex={true}
 					autoGenerateAlphabeticalIndex={true}
 					selectPlaceholderText={'Choose one...'}
