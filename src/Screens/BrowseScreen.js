@@ -11,7 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import CarCard from '../Components/CarCard';
 import SearchBar from '../Components/SearchBar';
 
-const BrowseScreen = () => {
+const BrowseScreen = ({navigation}) => {
 	const [term, setTerm] = useState('');
 
 	return (
@@ -34,19 +34,19 @@ const BrowseScreen = () => {
 					/>
 				</View>
 				<ScrollView>
-					<CarCard />
-					<CarCard />
-					<CarCard />
-					<CarCard />
-					<CarCard />
-					<CarCard />
-					<CarCard />
-					<CarCard />
-					<CarCard />
-					<CarCard />
-					<CarCard />
-					<CarCard />
-					<CarCard />
+					<CarCard navigation = {navigation}/>
+					<CarCard navigation = {navigation}/>
+					<CarCard navigation = {navigation}/>
+					<CarCard navigation = {navigation}/>
+					<CarCard navigation = {navigation}/>
+					<CarCard navigation = {navigation}/>
+					<CarCard navigation = {navigation}/>
+					<CarCard navigation = {navigation}/>
+					<CarCard navigation = {navigation}/>
+					<CarCard navigation = {navigation}/>
+					<CarCard navigation = {navigation}/>
+					<CarCard navigation = {navigation}/>
+					<CarCard navigation = {navigation}/>
 				</ScrollView>
 			</View>
 		</SafeAreaView>

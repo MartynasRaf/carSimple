@@ -31,8 +31,20 @@ const SignUpScreen = () => {
 					style={{
 						backgroundColor: 'white',
 						borderRadius: 100,
-						marginTop: 200,
+						marginTop: Dimensions.get("window").height / 6,
 					}}
+				/>
+
+				<TextInput
+					autoCapitalize='none'
+					autoCorrect={false}
+					style={styles.userNameInputStyle}
+					placeholder='Enter User Name'
+					value={userName}
+					onChangeText={setUserName}
+					onEndEditing={() =>
+						console.log('finished editing username')
+					}
 				/>
 
                 <TextInput
@@ -51,11 +63,12 @@ const SignUpScreen = () => {
 					autoCapitalize='none'
 					autoCorrect={false}
 					style={styles.userNameInputStyle}
-					placeholder='Enter User Name'
-					value={userName}
-					onChangeText={setUserName}
+					placeholder='Enter Password'
+					value={pass}
+					secureTextEntry
+					onChangeText={setPass}
 					onEndEditing={() =>
-						console.log('finished editing username')
+						console.log('finished editing password')
 					}
 				/>
 
@@ -63,12 +76,11 @@ const SignUpScreen = () => {
 					autoCapitalize='none'
 					autoCorrect={false}
 					style={styles.userNameInputStyle}
-					placeholder='Enter Password'
-					value={pass}
-					secureTextEntry
-					onChangeText={setPass}
+					placeholder='Enter Phone Number'
+					value={email}
+					onChangeText={setEmail}
 					onEndEditing={() =>
-						console.log('finished editing password')
+						console.log('finished phone number')
 					}
 				/>
 
