@@ -13,6 +13,7 @@ import { color } from 'react-native-reanimated';
 import { FontAwesome } from '@expo/vector-icons';
 import SignInScreen from './src/Screens/SignInScreen';
 import SignUpScreen from './src/Screens/SignUpScreen';
+import DetailedCarScreen from './src/Screens/DetailedCarScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -34,6 +35,16 @@ function ProfileNav() {
 			<Stack.Screen name='Profile' component={ProfileScreen} />
 			<Stack.Screen name='SignIn' component={SignInScreen} />
 			<Stack.Screen name='SignUp' component={SignUpScreen} />
+			<Stack.Screen name='Detailed' component={DetailedCarScreen} />
+		</Stack.Navigator>
+	);
+}
+
+function BrowseNav() {
+	return (
+		<Stack.Navigator headerMode='none'>
+			<Stack.Screen name='Browse' component={BrowseScreen} />
+			<Stack.Screen name='Detailed' component={DetailedCarScreen} />
 		</Stack.Navigator>
 	);
 }
@@ -75,7 +86,7 @@ export default function App() {
 				>
 					<Tab.Screen
 						name='Browse'
-						component={BrowseScreen}
+						component={BrowseNav}
 						options={{ title: 'Browse' }}
 					/>
 					<Tab.Screen
