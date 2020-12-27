@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 export default axios.create({
-	baseURL: 'https://hacker-news.firebaseio.com/v0', // TODO: Change URL to our cloud
+	baseURL: 'https://car-shopping-engine.azurewebsites.net',
 });
 
 /*
 USAGE (NOT SPECIFIC FOR THIS PROJECT!!!!!!):
 
-	const [storiesIds] = useHNApi('newstories', [], 100);
+	const [storiesIds] = useCarApi('newstories', [], 100);
 
 ///////////////////////////////////
 

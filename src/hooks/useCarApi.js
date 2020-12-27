@@ -1,14 +1,19 @@
+//Used only for GET request
 import { useState, useEffect } from 'react';
 import CarsAPI from '../api/CarsAPI';
 
-export default (directory, variablesArray, carsToLoad) => {
+export default (directory, variablesArray) => {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
 		const getData = async () => {
-			// Getting top stories
 			try {
-				const response = await CarsApi.get(`/${directory}`);
+				const response = await CarsAPI.get(`/${directory}`, {
+					auth: {
+						username: 'Martynas',
+						password: 'test', // Test login
+					},
+				});
 				setData(response.data);
 			} catch (err) {
 				console.log(`Error: ${err}`);
@@ -18,5 +23,5 @@ export default (directory, variablesArray, carsToLoad) => {
 		getData();
 	}, [...variablesArray]);
 
-	return [data.slice(0, carsToLoad)];
+	return [data];
 };

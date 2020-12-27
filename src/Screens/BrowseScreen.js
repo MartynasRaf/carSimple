@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	StyleSheet,
 	View,
@@ -10,20 +10,26 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CarCard from '../Components/CarCard';
 import SearchBar from '../Components/SearchBar';
+import useCarApi from '../hooks/useCarApi';
+import axios from 'axios';
 
-const BrowseScreen = ({navigation}) => {
+const BrowseScreen = ({ navigation }) => {
 	const [term, setTerm] = useState('');
+	const [firstLoad] = useCarApi('api/users/Martynas', [], 100);
+
+	console.log(firstLoad);
 
 	return (
-		<SafeAreaView style={{
-			flex: 1,
-			styles: styles.mainScreenStyle
+		<SafeAreaView
+			style={{
+				flex: 1,
+				styles: styles.mainScreenStyle,
 			}}
 		>
 			<View
 				style={{
 					flex: 1,
-					backgroundColor: '#DCEFF9'
+					backgroundColor: '#DCEFF9',
 				}}
 			>
 				<View style={{ backgroundColor: 'transperant' }}>
@@ -34,19 +40,19 @@ const BrowseScreen = ({navigation}) => {
 					/>
 				</View>
 				<ScrollView>
-					<CarCard navigation = {navigation}/>
-					<CarCard navigation = {navigation}/>
-					<CarCard navigation = {navigation}/>
-					<CarCard navigation = {navigation}/>
-					<CarCard navigation = {navigation}/>
-					<CarCard navigation = {navigation}/>
-					<CarCard navigation = {navigation}/>
-					<CarCard navigation = {navigation}/>
-					<CarCard navigation = {navigation}/>
-					<CarCard navigation = {navigation}/>
-					<CarCard navigation = {navigation}/>
-					<CarCard navigation = {navigation}/>
-					<CarCard navigation = {navigation}/>
+					<CarCard navigation={navigation} />
+					<CarCard navigation={navigation} />
+					<CarCard navigation={navigation} />
+					<CarCard navigation={navigation} />
+					<CarCard navigation={navigation} />
+					<CarCard navigation={navigation} />
+					<CarCard navigation={navigation} />
+					<CarCard navigation={navigation} />
+					<CarCard navigation={navigation} />
+					<CarCard navigation={navigation} />
+					<CarCard navigation={navigation} />
+					<CarCard navigation={navigation} />
+					<CarCard navigation={navigation} />
 				</ScrollView>
 			</View>
 		</SafeAreaView>

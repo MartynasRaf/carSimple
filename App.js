@@ -14,6 +14,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import SignInScreen from './src/Screens/SignInScreen';
 import SignUpScreen from './src/Screens/SignUpScreen';
 import DetailedCarScreen from './src/Screens/DetailedCarScreen';
+import { Provider as AuthProvider } from './src/context/AuthContext';
+import { decode, encode } from 'base-64';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -50,57 +52,67 @@ function BrowseNav() {
 }
 
 export default function App() {
+	if (!global.btoa) {
+		global.btoa = encode;
+	}
+
+	if (!global.atob) {
+		global.atob = decode;
+	}
+
 	return (
-		<SafeAreaProvider>
-			<NavigationContainer theme={MyTheme}>
-				<Tab.Navigator
-					tabBarOptions={{
-						activeBackgroundColor: '#ee6f57',
-						inactiveBackgroundColor: '#ee6f57',
-						activeTintColor: 'white',
-						inactiveTintColor: 'black',
-						showLabel: true,
-					}}
-					screenOptions={({ route }) => ({
-						tabBarIcon: ({ focused, color, size }) => {
-							let iconName;
+		<AuthProvider>
+			<SafeAreaProvider>
+				<NavigationContainer theme={MyTheme}>
+					<Tab.Navigator
+						tabBarOptions={{
+							activeBackgroundColor: '#ee6f57',
+							inactiveBackgroundColor: '#ee6f57',
+							activeTintColor: 'white',
+							inactiveTintColor: 'black',
+							showLabel: true,
+						}}
+						screenOptions={({ route }) => ({
+							tabBarIcon: ({ focused, color, size }) => {
+								let iconName;
 
-							if (route.name === 'Browse') {
-								iconName = 'th-list';
-							} else if (route.name == 'Upload') {
-								iconName = 'cart-plus';
-							} else if (route.name == 'Profile') {
-								iconName = 'user-circle';
-							}
+								if (route.name === 'Browse') {
+									iconName = 'th-list';
+								} else if (route.name == 'Upload') {
+									iconName = 'cart-plus';
+								} else if (route.name == 'Profile') {
+									iconName = 'user-circle';
+								}
 
-							// You can return any component that you like here!
-							return (
-								<FontAwesome
-									name={iconName}
-									size={size}
-									color={color}
-								/>
-							);
-						},
-					})}
-				>
-					<Tab.Screen
-						name='Browse'
-						component={BrowseNav}
-						options={{ title: 'Browse' }}
-					/>
-					<Tab.Screen
-						name='Upload'
-						component={UploadScreen}
-						options={{ title: 'Upload' }}
-					/>
-					<Tab.Screen
-						name='Profile'
-						component={ProfileNav}
-						options={{ title: 'Profile' }}
-					/>
-				</Tab.Navigator>
-			</NavigationContainer>
-		</SafeAreaProvider>
+								// You can return any component that you like here!
+								return (
+									<FontAwesome
+										name={iconName}
+										size={size}
+										color={color}
+									/>
+								);
+							},
+						})}
+					>
+						<Tab.Screen
+							name='Browse'
+							component={BrowseNav}
+							options={{ title: 'Browse' }}
+						/>
+						<Tab.Screen
+							name='Upload'
+							component={UploadScreen}
+							options={{ title: 'Upload' }}
+						/>
+						<Tab.Screen
+							name='Profile'
+							component={ProfileNav}
+							options={{ title: 'Profile' }}
+						/>
+					</Tab.Navigator>
+				</NavigationContainer>
+			</SafeAreaProvider>
+		</AuthProvider>
 	);
 }
