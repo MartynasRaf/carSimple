@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
 	StyleSheet,
 	View,
@@ -12,12 +12,12 @@ import CarCard from '../Components/CarCard';
 import SearchBar from '../Components/SearchBar';
 import useCarApi from '../hooks/useCarApi';
 import axios from 'axios';
+import { Context } from '../context/AuthContext';
 
 const BrowseScreen = ({ navigation }) => {
+	const { state } = useContext(Context);
 	const [term, setTerm] = useState('');
 	const [firstLoad] = useCarApi('api/users/Martynas', [], 100);
-
-	console.log(firstLoad);
 
 	return (
 		<SafeAreaView

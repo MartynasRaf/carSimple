@@ -43,7 +43,7 @@ const signup = (dispatch) => async ({ username, password, phone, email }) => {
 			email,
 			likedAds: [],
 		});
-		await AsyncStorage.setItem('login', { username, password });
+		//await AsyncStorage.setItem('login', { username, password });
 		dispatch({ type: 'signin', payload: { username, password } });
 
 		//navigate('TrackList');
@@ -59,11 +59,15 @@ const signin = (dispatch) => async ({ username, password }) => {
 	try {
 		const response = await CarsAPI.get(`/api/users/${username}`, {
 			auth: {
-				username: username,
-				password: password, // Test login
+				username,
+				password, // Test login
 			},
 		});
-		await AsyncStorage.setItem('login', { username, password });
+		/*
+		await AsyncStorage.setItem(
+			'login',
+			JSON.stringify({ username, password })
+		);*/
 		dispatch({ type: 'signin', payload: { username, password } });
 	} catch (err) {
 		dispatch({
@@ -91,7 +95,7 @@ const signin = (dispatch) => async ({ username, password }) => {
 };
 
 const signout = (dispatch) => async () => {
-	await AsyncStorage.removeItem('login');
+	//await AsyncStorage.removeItem('login');
 	dispatch({ type: 'signout' });
 
 	//navigate('loginFlow');
@@ -100,5 +104,5 @@ const signout = (dispatch) => async () => {
 export const { Provider, Context } = createDataContext(
 	authReducer,
 	{ signin, signout, signup, clearErrorMessage, tryLocalSignin },
-	{ token: null, errorMessage: '' }
+	{ login: null, errorMessage: '' }
 );

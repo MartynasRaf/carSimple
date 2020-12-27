@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
 	StyleSheet,
 	View,
@@ -7,11 +7,13 @@ import {
 	TouchableOpacity,
 	Dimensions,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context'; 
 import { FontAwesome } from '@expo/vector-icons';
 import AdjustLabel from '../Components/AdjustLabel';
+import { Context } from '../context/AuthContext';
 
-const SignInScreen =  ({ navigation }) => {
+const SignInScreen = ({ navigation }) => {
+	const { state, signin, clearErrorMessage } = useContext(Context);
 	const [userName, setUserName] = useState('');
 	const [pass, setPass] = useState('');
 
@@ -41,9 +43,7 @@ const SignInScreen =  ({ navigation }) => {
 					placeholder='Enter User Name'
 					value={userName}
 					onChangeText={setUserName}
-					onEndEditing={() =>
-						console.log('finished editing username')
-					}
+
 				/>
 
 				<TextInput
@@ -54,12 +54,15 @@ const SignInScreen =  ({ navigation }) => {
 					value={pass}
 					secureTextEntry
 					onChangeText={setPass}
-					onEndEditing={() =>
-						console.log('finished editing password')
-					}
+
 				/>
 
-				<TouchableOpacity style={styles.signButton}>
+				<TouchableOpacity
+					style={styles.signButton}
+					onPress={() =>
+						signin({ username: userName, password: pass })
+					}
+				>
 					<AdjustLabel
 						fontSize={16}
 						text='Log In'
@@ -68,7 +71,10 @@ const SignInScreen =  ({ navigation }) => {
 					/>
 				</TouchableOpacity>
 
-				<TouchableOpacity style={{ marginTop: 10 }} onPress={() => navigation.navigate('SignUp')}>
+				<TouchableOpacity
+					style={{ marginTop: 10 }}
+					onPress={() => navigation.navigate('SignUp')}
+				>
 					<Text style={{ color: 'blue' }}>
 						Don't have an account? Sign up here!
 					</Text>
@@ -85,7 +91,7 @@ const styles = StyleSheet.create({
 	userNameInputStyle: {
 		fontSize: 20,
 		marginTop: 20,
-		width: Dimensions.get('window').width/ 1.5,
+		width: Dimensions.get('window').width / 1.5,
 		alignItems: 'center',
 		height: 40,
 		borderBottomWidth: 1,
@@ -100,7 +106,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		textAlignVertical: 'center',
 		height: 40,
-		width: Dimensions.get('window').width/ 1.5,
+		width: Dimensions.get('window').width / 1.5,
 		color: 'white',
 	},
 	filterText: {

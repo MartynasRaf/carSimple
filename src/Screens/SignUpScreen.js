@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
 	StyleSheet,
 	View,
@@ -10,11 +10,13 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from '@expo/vector-icons';
 import AdjustLabel from '../Components/AdjustLabel';
+import { Context } from '../context/AuthContext';
 
 const SignUpScreen = () => {
+	const { state, signup, clearErrorMessage } = useContext(Context);
 	const [userName, setUserName] = useState('');
-    const [pass, setPass] = useState('');
-    const [email, setEmail] = useState('');
+	const [pass, setPass] = useState('');
+	const [email, setEmail] = useState('');
 
 	return (
 		<SafeAreaView style={styles.mainScreenStyle}>
@@ -31,7 +33,7 @@ const SignUpScreen = () => {
 					style={{
 						backgroundColor: 'white',
 						borderRadius: 100,
-						marginTop: Dimensions.get("window").height / 6,
+						marginTop: Dimensions.get('window').height / 6,
 					}}
 				/>
 
@@ -47,16 +49,14 @@ const SignUpScreen = () => {
 					}
 				/>
 
-                <TextInput
+				<TextInput
 					autoCapitalize='none'
 					autoCorrect={false}
 					style={styles.userNameInputStyle}
 					placeholder='Enter E-mail'
 					value={email}
 					onChangeText={setEmail}
-					onEndEditing={() =>
-						console.log('finished editing e-mail')
-					}
+					onEndEditing={() => console.log('finished editing e-mail')}
 				/>
 
 				<TextInput
@@ -79,12 +79,20 @@ const SignUpScreen = () => {
 					placeholder='Enter Phone Number'
 					value={email}
 					onChangeText={setEmail}
-					onEndEditing={() =>
-						console.log('finished phone number')
-					}
+					onEndEditing={() => console.log('finished phone number')}
 				/>
 
-				<TouchableOpacity style={styles.signButton}>
+				<TouchableOpacity
+					style={styles.signButton}
+					onPress={() =>
+						signup({
+							username: userName,
+							password: pass,
+							phone: '',
+							email,
+						})
+					}
+				>
 					<AdjustLabel
 						fontSize={16}
 						text='Sign Up'
@@ -104,7 +112,7 @@ const styles = StyleSheet.create({
 	userNameInputStyle: {
 		fontSize: 20,
 		marginTop: 20,
-		width: Dimensions.get('window').width/ 1.5,
+		width: Dimensions.get('window').width / 1.5,
 		alignItems: 'center',
 		height: 40,
 		borderBottomWidth: 1,
@@ -119,7 +127,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		textAlignVertical: 'center',
 		height: 40,
-		width: Dimensions.get('window').width/ 1.5,
+		width: Dimensions.get('window').width / 1.5,
 		color: 'white',
 	},
 	filterText: {
