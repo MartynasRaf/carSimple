@@ -8,7 +8,12 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "permissions": ["expo-barcode-scanner",
+        "expo-camera",
+        "expo-face-detector",
+        "expo-image-picker",
+        "expo-media-library"]
     },
     "updates": {
       "fallbackToCacheTimeout": 0
