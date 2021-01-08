@@ -16,6 +16,8 @@ const UploadScreen = () => {
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const [selectedIndex2, setSelectedIndex2] = useState(0);
 	const [selectedIndex3, setSelectedIndex3] = useState(0);
+	const [selectedIndex4, setSelectedIndex4] = useState(0);
+	const [selectedIndex5, setSelectedIndex5] = useState(0);
 	const [selectedDate, setDate] = useState('');
 	const [shouldShow, setShouldShow] = useState(false);
 	const [shouldShowDateButton, setShouldShowDateButton] = useState(false);
@@ -40,6 +42,14 @@ const UploadScreen = () => {
 	const handleSingleIndexSelect3 = (index) => {
 		// For single Tab Selection SegmentedControlTab
 		setSelectedIndex3(index);
+	};
+	const handleSingleIndexSelect4 = (index) => {
+		// For single Tab Selection SegmentedControlTab
+		setSelectedIndex4(index);
+	};
+	const handleSingleIndexSelect5 = (index) => {
+		// For single Tab Selection SegmentedControlTab
+		setSelectedIndex5(index);
 	};
 
 
@@ -167,6 +177,46 @@ const UploadScreen = () => {
 						activeTabTextStyle={{color: 'black'}}
 					/>
 					</View>
+					<View style={styles.container} >
+						<Text>
+							Steering wheel side:
+						</Text>
+					<SegmentedControlTab
+						values={['Left', 'Right']}
+						selectedIndex={selectedIndex4}
+						tabStyle={styles.tabStyle}
+						activeTabStyle={styles.activeTabStyle}
+						onTabPress={handleSingleIndexSelect4}
+						tabStyle={{
+							backgroundColor: 'white',
+							borderWidth: 0,
+							borderColor: 'transparent'
+						  }}
+						activeTabStyle={{backgroundColor: '#ee6f57'}}
+						tabTextStyle={{color: '#444444', fontWeight: 'bold'}}
+						activeTabTextStyle={{color: 'black'}}
+					/>
+					</View>
+					<View style={styles.container} >
+						<Text>
+							Drive wheels:
+						</Text>
+					<SegmentedControlTab
+						values={['Rear', 'Front', 'All']}
+						selectedIndex={selectedIndex5}
+						tabStyle={styles.tabStyle}
+						activeTabStyle={styles.activeTabStyle}
+						onTabPress={handleSingleIndexSelect5}
+						tabStyle={{
+							backgroundColor: 'white',
+							borderWidth: 0,
+							borderColor: 'transparent'
+						  }}
+						activeTabStyle={{backgroundColor: '#ee6f57'}}
+						tabTextStyle={{color: '#444444', fontWeight: 'bold'}}
+						activeTabTextStyle={{color: 'black'}}
+					/>
+					</View>
 					<Input givenText="Color:"/>
 					<TouchableOpacity onPress={openImagePickerAsync} style={styles.buttonStyle}>
 						<Text>
@@ -184,6 +234,11 @@ const UploadScreen = () => {
 							style={styles.thumbnail}
 						/>}
 					</View>
+					<TouchableOpacity style={styles.buttonStyle3}>
+						<Text>
+							UPLOAD AD
+						</Text>
+					</TouchableOpacity>
 		</ScrollView>
 
 		
@@ -233,6 +288,16 @@ const styles = StyleSheet.create({
 		width: 200,
 		height: 40,
 	},
+	buttonStyle3: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		alignSelf: 'center',
+		backgroundColor: '#EE6F57',
+		marginTop: 15,
+		borderRadius: 50,
+		width: 100,
+		height: 50,
+	},
 	thumbnail: {
 		width: 300,
 		height: 300,
@@ -240,7 +305,7 @@ const styles = StyleSheet.create({
 	},
 	container2: {
 		marginTop: 50,
-		marginBottom: 50,
+		//marginBottom: 50,
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
