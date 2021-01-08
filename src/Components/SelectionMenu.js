@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 	buttonStyle: {
 		fontSize: 18,
 		color: 'white',
-		marginTop: Dimensions.get('window').height / 50,
+		marginVertical: Dimensions.get('window').height / 60,
 		marginHorizontal: Dimensions.get('window').width / 10,
 	}
 });

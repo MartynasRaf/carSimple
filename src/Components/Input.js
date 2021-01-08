@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 
-const Input = ( {givenText, enabled} ) => {
+const Input = ( {givenText, enabled, keyboard} ) => {
    const [text, setText] = useState(givenText);
    console.log({givenText});
-   
+   if(keyboard==null) {keyboard = 'default'}
    if(enabled == false) return null;
       return (
          <View style = {styles.container}>
             <TextInput style = {styles.input}
                textAlign = "center"
-               keyboardType = 'numeric'
+               keyboardType = {keyboard}
                placeholder = {givenText}
                underlineColorAndroid = "transparent"
                placeholder = {givenText}
@@ -26,7 +26,7 @@ export default Input
 
 const styles = StyleSheet.create({
    container: {
-      paddingTop: 23
+      //paddingTop: 23
    },
    input: {
       color: 'white',

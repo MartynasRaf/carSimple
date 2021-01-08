@@ -6,17 +6,22 @@ import SelectionMenu from '../Components/SelectionMenu';
 import Input from '../Components/Input';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import DatePicker from 'react-native-modern-datepicker';
-import ImageBrowser from '../Components/ImageBrowser';
+import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
+import * as Permissions from 'expo-permissions';
 
 const UploadScreen = () => {
 	let selectBrand = { Name: 'Select Brand' };
 	let selectMake = { Name: 'Select Make' };
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const [selectedIndex2, setSelectedIndex2] = useState(0);
+	const [selectedIndex3, setSelectedIndex3] = useState(0);
 	const [selectedDate, setDate] = useState('');
 	const [shouldShow, setShouldShow] = useState(false);
 	const [shouldShowDateButton, setShouldShowDateButton] = useState(false);
+	const [selectedImage, setSelectedImage] = useState(null);
 
+	
 	
 	const handleSingleIndexSelect = (index) => {
 		// For single Tab Selection SegmentedControlTab
@@ -32,46 +37,38 @@ const UploadScreen = () => {
 		// For single Tab Selection SegmentedControlTab
 		setSelectedIndex2(index);
 	};
+	const handleSingleIndexSelect3 = (index) => {
+		// For single Tab Selection SegmentedControlTab
+		setSelectedIndex3(index);
+	};
+
+
+	let openImagePickerAsync = async () => {
+		let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
 	
-	/*imageBrowserCallback = (callback) => {
-		callback.then((photos) => {
-		  console.log(photos)
-		  this.setState({
-			imageBrowserOpen: false,
-			photos
-		  })
-		}).catch((e) => console.log(e))
-	  }*/
+		if (permissionResult.granted === false) {
+		  alert('Permission to access camera roll is required!');
+		  return;
+		}
+	
+		let pickerResult = await ImagePicker.launchImageLibraryAsync();
+	
+		if (pickerResult.cancelled === true) {
+		  return;
+		}
+	
+		setSelectedImage({ localUri: pickerResult.uri });
+	  };
+  
 
 	return (
 		<SafeAreaView style={styles.mainScreenStyle}>
-			<ImageBrowser max={4} />
 			<ScrollView style={styles.backgroundStyle}>
 				<SelectionMenu selectedItem = {selectBrand} providedItems={[
-						{
-							Name: 'Audi',
-							//Value: 'Åland Islands',
-							//Code: 'AX',
-							//Id: 1,
-						},
-						{
-							Name: 'BMW',
-							//Value: 'Albania',
-							//Code: 'AL',
-							//Id: 2,
-						},
-						{
-							Name: 'Volvo',
-							//Value: 'Algeria',
-							//Code: 'DZ',
-							//Id: 3,
-						},
-						{
-							Name: 'Lada',
-							//Value: 'American Samoa',
-							//Code: 'AS',
-							//Id: 4,
-						},
+						{Name: 'Audi'},
+						{Name: 'BMW'},
+						{Name: 'Volvo'},
+						{Name: 'Lada'}
 					]}/>
 				<SelectionMenu selectedItem = {selectMake} providedItems={[
 						{
@@ -96,7 +93,7 @@ const UploadScreen = () => {
 							//Id: 4,
 						},
 					]}/>
-					<Input givenText="Price:"/>
+					<Input givenText="Price:" keyboard='numeric'/>
 					<View style={styles.container}>
 					<SegmentedControlTab
 						values={['New', 'Used']}
@@ -116,10 +113,19 @@ const UploadScreen = () => {
 					</View>
 					<View>
 					{shouldShowDateButton ? (
-					<Button
+					<View>
+					<TouchableOpacity style={styles.buttonStyle2}
 						title= {"Year bought: " + selectedDate}
 						onPress={() => setShouldShow(!shouldShow)}
-						/>) : null}
+					>
+						<Text>
+							{"Year bought: " + selectedDate}
+						</Text>
+					</TouchableOpacity>
+					<Input givenText="Kilometers driven:" keyboard='numeric'/>
+					</View>
+					
+						) : null}
 						{shouldShow ? (
 							<DatePicker
 								mode="monthYear"
@@ -144,11 +150,40 @@ const UploadScreen = () => {
 						activeTabTextStyle={{color: 'black'}}
 					/>
 					</View>
-					<TouchableOpacity style={styles.buttonStyle}>
+					<View style={styles.container} >
+					<SegmentedControlTab
+						values={['Mechanic', 'Automatic']}
+						selectedIndex={selectedIndex3}
+						tabStyle={styles.tabStyle}
+						activeTabStyle={styles.activeTabStyle}
+						onTabPress={handleSingleIndexSelect3}
+						tabStyle={{
+							backgroundColor: 'white',
+							borderWidth: 0,
+							borderColor: 'transparent'
+						  }}
+						activeTabStyle={{backgroundColor: '#ee6f57'}}
+						tabTextStyle={{color: '#444444', fontWeight: 'bold'}}
+						activeTabTextStyle={{color: 'black'}}
+					/>
+					</View>
+					<Input givenText="Color:"/>
+					<TouchableOpacity onPress={openImagePickerAsync} style={styles.buttonStyle}>
 						<Text>
-							My button
+							Upload your vechicle photo!
 						</Text>
 					</TouchableOpacity>
+					<View style={styles.container2}>
+						{selectedImage != null ?
+							<Image
+								source={{ uri: selectedImage.localUri }}
+								style={styles.thumbnail}
+							/>
+						: <Image
+							source={{ uri: 'https://creativeglobal.co.in/mcp/uploads/product/original/no_image.jpg' }}
+							style={styles.thumbnail}
+						/>}
+					</View>
 		</ScrollView>
 
 		
@@ -188,6 +223,28 @@ const styles = StyleSheet.create({
 		width: 200,
 		height: 40,
 	},
+	buttonStyle2: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		alignSelf: 'center',
+		backgroundColor: '#EE6F57',
+		marginTop: 15,
+		borderRadius: 50,
+		width: 200,
+		height: 40,
+	},
+	thumbnail: {
+		width: 300,
+		height: 300,
+		resizeMode: "contain"
+	},
+	container2: {
+		marginTop: 50,
+		marginBottom: 50,
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+	  },
 });
 export default UploadScreen;
 
